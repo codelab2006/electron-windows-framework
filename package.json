@@ -1,11 +1,12 @@
 {
-  "name": "electron",
+  "name": "electron-windows-framework",
   "version": "1.0.0",
-  "description": "Electron Application",
+  "description": "Electron Windows Framework",
   "scripts": {},
   "author": "Yongjian Huang",
   "license": "MIT",
   "devDependencies": {
+    "electron": "^20.0.0",
     "typescript": "^4.0.0"
   },
   "dependencies": {}
