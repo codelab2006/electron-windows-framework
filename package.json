@@ -1,0 +1,12 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "Electron Application",
+  "scripts": {},
+  "author": "Yongjian Huang",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  },
+  "dependencies": {}
+}
