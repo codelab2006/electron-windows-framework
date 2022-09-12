@@ -2,7 +2,9 @@
   "name": "electron-windows-framework",
   "version": "1.0.0",
   "description": "Electron Windows Framework",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install"
+  },
   "author": "Yongjian Huang",
   "license": "MIT",
   "devDependencies": {
@@ -11,6 +13,8 @@
     "electron": "^20.0.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0",
     "prettier": "^2.0.0",
     "typescript": "^4.0.0"
   },
