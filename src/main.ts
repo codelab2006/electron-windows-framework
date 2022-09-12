@@ -1,4 +1,6 @@
 import { Component } from 'components/Component';
 
-const component = new Component();
-console.info(component);
+class UIComponent extends Component {}
+
+const ui = new UIComponent();
+console.info(ui);
