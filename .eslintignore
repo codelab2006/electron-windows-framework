@@ -1,1 +1,4 @@
+/dist/
+/build/
 .eslintrc.js
+webpack.config.js
