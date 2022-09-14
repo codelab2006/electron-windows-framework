@@ -1,7 +1,13 @@
-import { Component } from 'components/Component';
+import { app, BrowserWindow } from 'electron';
 
-class UIComponent extends Component {}
+function createWindow(): void {
+  const win = new BrowserWindow({ width: 800, height: 600 });
+  void win.loadFile('index.html');
+}
 
-const ui1 = new UIComponent();
-const ui2 = new UIComponent();
-console.info(ui1, ui2);
+app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
+
+void app.whenReady().then(() => {
+  createWindow();
+  app.on('activate', () => BrowserWindow.getAllWindows().length === 0 && createWindow());
+});

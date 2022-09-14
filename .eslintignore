@@ -1,4 +1,6 @@
 /dist/
 /build/
 .eslintrc.js
-webpack.config.js
+webpack.common.js
+webpack.dev.js
+webpack.prod.js

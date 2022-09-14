@@ -16,11 +16,10 @@
     "module": "ESNext",
     "moduleResolution": "NodeNext",
     "paths": {
+      "@abstract/*": ["abstract/*"],
       "@components/*": ["components/*"]
     },
     "resolveJsonModule": true,
-
-    "noEmit": true,
 
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
