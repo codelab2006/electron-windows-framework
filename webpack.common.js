@@ -1,17 +1,22 @@
-const path = require('path');
 const { merge } = require('webpack-merge');
+const TsconfigPathsWebpackPlugin = require('tsconfig-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const commonConfig = {
   resolve: {
     extensions: ['.ts'],
-    alias: {
-      '@abstract': path.resolve(__dirname, 'src/abstract/'),
-      '@components': path.resolve(__dirname, 'src/components/'),
-    },
+    plugins: [new TsconfigPathsWebpackPlugin()],
   },
   module: {
     rules: [{ test: /\.ts?$/, loader: 'ts-loader' }],
   },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: './**/*.{tsx,ts}',
+      },
+    }),
+  ],
 };
 
 const mainConfig = merge(commonConfig, {
