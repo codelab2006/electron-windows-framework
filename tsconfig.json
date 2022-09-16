@@ -21,6 +21,8 @@
     },
     "resolveJsonModule": true,
 
+    "removeComments": true,
+
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
