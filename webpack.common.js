@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { merge } = require('webpack-merge');
 const TsconfigPathsWebpackPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -25,11 +27,9 @@ const mainConfig = merge(commonConfig, {
     main: './src/main.ts',
   },
   target: 'electron-main',
-  output: { clean: true },
 });
 
 const preloadConfig = merge(commonConfig, {
-  dependencies: ['main'],
   name: 'preload',
   entry: {
     preload: './src/preload.ts',
