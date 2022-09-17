@@ -67,6 +67,14 @@ const rendererConfig = (outputPath) =>
       renderer: `./src/${rendererName}.ts`,
     },
     target: ['web', 'electron-renderer'],
+    module: {
+      rules: [
+        {
+          test: /\.scss$/,
+          use: ['style-loader', 'css-loader', 'sass-loader'],
+        },
+      ],
+    },
     output: { path: path.resolve(__dirname, outputPath, rendererName), filename: '[name].js' },
     plugins: [
       new HtmlWebpackPlugin({
