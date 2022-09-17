@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { merge } = require('webpack-merge');
+const path = require('path');
 const TsconfigPathsWebpackPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const { merge } = require('webpack-merge');
 
 const commonConfig = {
   resolve: {
@@ -20,42 +21,49 @@ const commonConfig = {
       },
     ],
   },
-};
-
-const rendererConfig = merge(commonConfig, {
-  name: 'renderer',
-  entry: {
-    renderer: './src/renderer.ts',
-  },
-  target: 'web',
-  plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      eslint: {
-        files: './**/*.{ts, tsx}',
-      },
-    }),
-  ],
   output: {
     clean: true,
   },
-});
+};
+
+const mainName = 'main';
+const preloadName = 'preload';
+const rendererName = 'renderer';
 
 const mainConfig = merge(commonConfig, {
-  dependencies: ['renderer'],
-  name: 'main',
+  name: mainName,
   entry: {
-    main: './src/main.ts',
+    main: `./src/${mainName}.ts`,
   },
   target: 'electron-main',
+  output: { path: path.resolve(__dirname, 'build'), filename: '[name].js' },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      eslint: {
+        files: './**/*.{ts,tsx}',
+      },
+    }),
+  ],
 });
 
 const preloadConfig = merge(commonConfig, {
-  dependencies: ['renderer'],
-  name: 'preload',
+  dependencies: [mainName],
+  name: preloadName,
   entry: {
-    preload: './src/preload.ts',
+    preload: `./src/${preloadName}.ts`,
   },
   target: 'electron-preload',
+  output: { path: path.resolve(__dirname, 'build', preloadName), filename: '[name].js' },
 });
 
-module.exports = [rendererConfig, mainConfig, preloadConfig];
+const rendererConfig = merge(commonConfig, {
+  dependencies: [mainName, preloadName],
+  name: rendererName,
+  entry: {
+    renderer: `./src/${rendererName}.ts`,
+  },
+  target: ['web', 'electron-renderer'],
+  output: { path: path.resolve(__dirname, 'build', rendererName), filename: '[name].js' },
+});
+
+module.exports = [mainConfig, preloadConfig, rendererConfig];

@@ -6,10 +6,10 @@ async function createWindow(): Promise<void> {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload/preload.js'),
     },
   });
-  await win.loadFile('index.html');
+  await win.loadFile('renderer/index.html');
 }
 
 app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
