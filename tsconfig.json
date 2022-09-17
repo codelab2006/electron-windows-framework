@@ -14,7 +14,7 @@
     "allowUmdGlobalAccess": false,
     "baseUrl": "./src",
     "module": "ESNext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node",
     "paths": {
       "@abstract/*": ["abstract/*"],
       "@components/*": ["components/*"]

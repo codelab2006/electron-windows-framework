@@ -74,6 +74,18 @@ const rendererConfig = (outputPath) =>
         filename: 'renderer.html',
       }),
     ],
+    optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
+    },
   });
 
 module.exports = [mainConfig, preloadConfig, rendererConfig];
