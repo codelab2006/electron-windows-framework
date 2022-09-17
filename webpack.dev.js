@@ -9,6 +9,6 @@ module.exports = configs.map((config) =>
       mode: 'development',
       devtool: 'inline-source-map',
     },
-    config,
+    config('build'),
   ),
 );

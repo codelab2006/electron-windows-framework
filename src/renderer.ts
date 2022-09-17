@@ -11,7 +11,8 @@ class Renderer extends Obj {
     ).versions;
     information.innerText = `This app is using Chrome (v${versions.chrome()}), Node.js (v${versions.node()}), and Electron (v${versions.electron()})`;
     void (async () => {
-      await versions.ping();
+      const response = await versions.ping();
+      console.info(response);
     })();
   }
 }

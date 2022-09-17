@@ -1,15 +1,17 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 
 async function createWindow(): Promise<void> {
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1280,
+    height: 800,
     webPreferences: {
       preload: path.join(__dirname, 'preload/preload.js'),
     },
   });
-  await win.loadFile('renderer/index.html');
+  ipcMain.handle('ping', () => 'pong');
+  await win.loadFile('renderer/renderer.html');
+  win.webContents.openDevTools();
 }
 
 app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());

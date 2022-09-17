@@ -9,6 +9,6 @@ module.exports = configs.map((config) =>
       mode: 'production',
       devtool: 'source-map',
     },
-    config,
+    config('dist'),
   ),
 );
