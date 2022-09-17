@@ -6,22 +6,42 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const commonConfig = {
   resolve: {
-    extensions: ['.ts'],
+    extensions: ['.ts', '.tsx'],
     plugins: [new TsconfigPathsWebpackPlugin()],
   },
   module: {
-    rules: [{ test: /\.ts?$/, loader: 'ts-loader' }],
+    rules: [
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true,
+        },
+      },
+    ],
   },
+};
+
+const rendererConfig = merge(commonConfig, {
+  name: 'renderer',
+  entry: {
+    renderer: './src/renderer.ts',
+  },
+  target: 'web',
   plugins: [
     new ForkTsCheckerWebpackPlugin({
       eslint: {
-        files: './**/*.{tsx,ts}',
+        files: './**/*.{ts, tsx}',
       },
     }),
   ],
-};
+  output: {
+    clean: true,
+  },
+});
 
 const mainConfig = merge(commonConfig, {
+  dependencies: ['renderer'],
   name: 'main',
   entry: {
     main: './src/main.ts',
@@ -30,6 +50,7 @@ const mainConfig = merge(commonConfig, {
 });
 
 const preloadConfig = merge(commonConfig, {
+  dependencies: ['renderer'],
   name: 'preload',
   entry: {
     preload: './src/preload.ts',
@@ -37,4 +58,4 @@ const preloadConfig = merge(commonConfig, {
   target: 'electron-preload',
 });
 
-module.exports = [mainConfig, preloadConfig];
+module.exports = [rendererConfig, mainConfig, preloadConfig];
