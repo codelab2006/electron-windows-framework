@@ -13,7 +13,7 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "npm",
-      "args": "start",
+      "args": "run build",
       "outputCapture": "std",
       "console": "integratedTerminal"
     },

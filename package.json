@@ -4,9 +4,10 @@
   "description": "Electron Windows Framework",
   "scripts": {
     "prepare": "husky install",
-    "dev": "webpack --watch --config webpack.dev.js",
-    "start": "electron ./build/main.js --remote-debugging-port=9222",
-    "prod": "webpack --config webpack.prod.js"
+    "start": "webpack --watch --config webpack.dev.js",
+    "build": "electron ./build/main.js --remote-debugging-port=9222",
+    "prod": "webpack --config webpack.prod.js",
+    "dist": "electron ./dist/main.js --remote-debugging-port=9222"
   },
   "author": "Yongjian Huang",
   "license": "MIT",

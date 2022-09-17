@@ -7,7 +7,6 @@ module.exports = configs.map((config) =>
   merge(
     {
       mode: 'production',
-      devtool: 'source-map',
     },
     config('dist'),
   ),

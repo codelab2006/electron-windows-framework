@@ -25,6 +25,7 @@ const commonConfig = {
   output: {
     clean: true,
   },
+  devtool: 'inline-source-map',
 };
 
 const mainName = 'main';
