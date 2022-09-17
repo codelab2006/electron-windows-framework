@@ -7,6 +7,7 @@ module.exports = configs.map((config) =>
   merge(
     {
       mode: 'development',
+      devtool: 'inline-source-map',
     },
     config('build'),
   ),
